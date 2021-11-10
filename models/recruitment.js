@@ -9,35 +9,39 @@ module.exports = class Recruitment extends Sequelize.Model {
                 allowNull: false,
             },
             start_date: {
-                type: Sequelize.DATE,
+                type: Sequelize.DATEONLY,
                 allowNull: false,
             },
             end_date: {
-                type: Sequelize.DATE,
+                type: Sequelize.DATEONLY,
                 allowNull: false,
             },
-            dday: { // 디데이
-                type: Sequelize.INTEGER,
+            type: { // 채용 구분
+                type: Sequelize.STRING(100),
+                allowNull: false,
+            },
+            category: { // 채용 분야
+                type: Sequelize.STRING(100),
                 allowNull: false,
             },
             division_infomation: { // 모집분야
-                type: Sequelize.STRING(10000),
+                type: Sequelize.TEXT,
                 allowNull: false,
             },
             work_infomation: { // 업무내용
-                type: Sequelize.STRING(30000),
+                type: Sequelize.TEXT,
                 allowNull: false,
             },
             qualification_infomation: { // 지원자격
-                type: Sequelize.STRING(1000),
+                type: Sequelize.TEXT,
                 allowNull: false,
             },
             submit_infomation: { // 제출서류
-                type: Sequelize.STRING(10000),
+                type: Sequelize.TEXT,
                 allowNull: false,
             },
             help_infomation: { // 도움말
-                type: Sequelize.STRING(50000),
+                type: Sequelize.TEXT,
                 allowNull: false,
             },
         }, {

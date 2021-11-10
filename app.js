@@ -9,6 +9,7 @@ var cors = require('cors'); //교차통신 모듈 호출
 var companysRouter = require('./routes/companys');
 var noticesRouter = require('./routes/notices');
 var apiRouter = require('./routes/api');
+var recruitmentRouter = require('./routes/recruitments');
 
 const { sequelize } = require('./models');
 // var sequelize = require('./models').sequelize;
@@ -22,7 +23,7 @@ sequelize.sync({ force: false })
       console.log('데이터베이스 연결.');
   })
   .catch((err) => {
-      console.error('데이터베이스 연결 실패');
+      console.error('데이터베이스 연결 실패.');
       console.error(err);
   });
 
@@ -40,7 +41,8 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/company', companysRouter);
 app.use('/notice', noticesRouter);
 app.use('/api', apiRouter);
-app.use(history()); // 히스토리 모드!
+app.use('/recruitment', recruitmentRouter);
+//sapp.use(history()); // 히스토리 모드!
 //app.use('/', indexRouter);
 
 
