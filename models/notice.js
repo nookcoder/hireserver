@@ -8,12 +8,12 @@ module.exports = class Notice extends Sequelize.Model {
                 allowNull: false,
             },
             date: {
-                type: Sequelize.DATE,
+                type: Sequelize.DATEONLY,
                 allowNull: false,
                 defaultValue: Sequelize.NOW,
             },
-            main_text: {
-                type: Sequelize.STRING(100),
+            content: {
+                type: Sequelize.TEXT,
                 allowNull: false,
             },
         }, {
