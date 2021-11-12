@@ -38,20 +38,17 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 
-app.use('/company', companysRouter);
-app.use('/notice', noticesRouter);
+app.use('/api/company', companysRouter);
+app.use('/api/notice', noticesRouter);
 app.use('/api', apiRouter);
-app.use('/recruitment', recruitmentRouter);
+app.use('/api/recruitment', recruitmentRouter);
 //sapp.use(history()); // 히스토리 모드!
 //app.use('/', indexRouter);
 
 
-// error handler
 app.use(function(err, req, res, next) {
-  // set locals, only providing error in development
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-  // render the error page
   res.status(err.status || 500);
   res.render('error');
 });
