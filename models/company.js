@@ -11,7 +11,7 @@ module.exports = class Company extends Sequelize.Model {
                 unique: true,
             },
             company_pw: {
-                type: Sequelize.STRING(50),
+                type: Sequelize.STRING(100),
                 allowNull: false,
             },
             company_name: {
