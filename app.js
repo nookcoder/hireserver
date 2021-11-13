@@ -10,6 +10,7 @@ var companysRouter = require('./routes/companys');
 var noticesRouter = require('./routes/notices');
 var apiRouter = require('./routes/api');
 var recruitmentRouter = require('./routes/recruitments');
+const resumeRouter = require('./routes/resume');
 
 const { sequelize } = require('./models');
 // var sequelize = require('./models').sequelize;
@@ -36,12 +37,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
-
-
 app.use('/api/company', companysRouter);
 app.use('/api/notice', noticesRouter);
 app.use('/api', apiRouter);
 app.use('/api/recruitment', recruitmentRouter);
+app.use('/api/resume',resumeRouter);
 //sapp.use(history()); // 히스토리 모드!
 //app.use('/', indexRouter);
 
@@ -53,4 +53,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.listen(8080,(req,res,next)=>{
+  console.log('this app listening at 3000 port');
+})
 module.exports = app;

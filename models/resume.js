@@ -5,7 +5,6 @@ module.exports = class Resume extends Sequelize.Model{
         return super.init({
             index:{
                 type:Sequelize.INTEGER,
-                autoIncrement:true,
                 allowNull:false
             },
             name:{
