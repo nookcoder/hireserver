@@ -8,7 +8,7 @@ module.exports = class Recruitment extends Sequelize.Model {
                 type: Sequelize.STRING(100),
                 allowNull: false,
             },
-            start_date: {
+            date: {
                 type: Sequelize.DATEONLY,
                 allowNull: false,
             },
@@ -16,31 +16,31 @@ module.exports = class Recruitment extends Sequelize.Model {
                 type: Sequelize.DATEONLY,
                 allowNull: false,
             },
-            type: { // 채용 구분
+            career: { // 채용 구분
                 type: Sequelize.STRING(100),
                 allowNull: false,
             },
-            category: { // 채용 분야
+            kind: { // 채용 분야
                 type: Sequelize.STRING(100),
                 allowNull: false,
             },
-            division_infomation: { // 모집분야
+            division_information: { // 모집분야
                 type: Sequelize.TEXT,
                 allowNull: false,
             },
-            work_infomation: { // 업무내용
+            work_information: { // 업무내용
                 type: Sequelize.TEXT,
                 allowNull: false,
             },
-            qualification_infomation: { // 지원자격
+            qualification_information: { // 지원자격
                 type: Sequelize.TEXT,
                 allowNull: false,
             },
-            submit_infomation: { // 제출서류
+            submit_information: { // 제출서류
                 type: Sequelize.TEXT,
                 allowNull: false,
             },
-            help_infomation: { // 도움말
+            help_information: { // 도움말
                 type: Sequelize.TEXT,
                 allowNull: false,
             },
