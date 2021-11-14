@@ -26,16 +26,3 @@ router.post('/company/signup', async (req, res, next) => {
 );
 
 module.exports = router;
-/*  
-// encryption 
-  let  cipher = crypto.createCipher('aes192', 'key');
-  cipher.update(user.password, 'utf8', 'base64');
-  let cipheredOutput = cipher.final('base64');
-  user.password = cipheredOutput;
-
-  //복호화
-  //decryption
-  let decipher = crypto.createDecipher('aes192', 'key');
-  decipher.update(cipheredOutput, 'base64', 'utf8');
-  let decipheredOutput = decipher.final('utf8');
-*/
