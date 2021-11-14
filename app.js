@@ -10,6 +10,7 @@ var companysRouter = require('./routes/companys');
 var noticesRouter = require('./routes/notices');
 var apiRouter = require('./routes/api');
 var recruitmentRouter = require('./routes/recruitments');
+const resumeRouter = require('./routes/resume');
 
 const { sequelize } = require('./models');
 // var sequelize = require('./models').sequelize;
@@ -42,6 +43,7 @@ app.use('/api/company', companysRouter);
 app.use('/api/notice', noticesRouter);
 app.use('/api', apiRouter);
 app.use('/api/recruitment', recruitmentRouter);
+app.use('/api/resume',resumeRouter);
 //sapp.use(history()); // 히스토리 모드!
 //app.use('/', indexRouter);
 
