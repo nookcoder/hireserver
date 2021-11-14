@@ -7,17 +7,17 @@ const Recruitment = require('../models/recruitment');
 
 var router = express.Router();
 
-// company id로 값 불러오기
-router.get('/:id', async (req, res, next) => {
-  try {
-    const company = await Company.findOne({where: { id: req.params.id }});
-    console.log(company);
-    res.json(company);
-  } catch (err) {
-    console.error(err);
-    next(err);
-  }
-});
+// // company id로 값 불러오기
+// router.get('/:id', async (req, res, next) => {
+//   try {
+//     const company = await Company.findOne({where: { id: req.params.id }});
+//     console.log(company);
+//     res.json(company);
+//   } catch (err) {
+//     console.error(err);
+//     next(err);
+//   }
+// });
 
 // 해당 company id에 따른 notices들
 router.get('/:company_id/notices', async (req, res, next) => {
@@ -81,13 +81,41 @@ router.post('/signup', async (req, res) => {
 }
 );
 
+router.get('/login', (req, res) => {
+  // 인증 확인
+  const token = req.headers['access-token'];
+
+  if (!token) {
+    res.json({
+      'status': 400,
+      'massage': 'Token 없음'
+    });
+  }
+  // 토큰 확인
+  const checkToken = new Promise((resolve, reject) => {
+    jwt.verify(token, '9Na0SSeCrET2KeY', function (err, decoded) {
+      if (err) reject(err);
+      resolve(decoded);
+    });
+  });
+  // 토큰이 성공적으로 확인 시, 데이터 보내기
+  checkToken.then(
+    token => {
+      res.status(200).json({
+        'status': 200,
+        'massage': 'success',
+        token
+      });
+    }
+  )
+});
+
 // 로그인 확인
 router.post('/login', async (req, res) => {
   try {
     const loginCompany = await Company.findOne({
-      where: { 'company_id': req.body.loginForm.id }
+      where: { 'company_id': req.body.id }
     })
-    
   // 해당 아이디가 없을 경우
   if (!loginCompany) {
     res.json({
@@ -97,7 +125,7 @@ router.post('/login', async (req, res) => {
   }
   else {
     // 아이디 있는데, 비밀번호 틀림
-    if (!bcrypt.compareSync(req.body.loginForm.password, loginCompany.company_pw))
+    if (!bcrypt.compareSync(req.body.password, loginCompany.company_pw))
     {
       return res.json({
         loginSuccess: false,
@@ -105,11 +133,10 @@ router.post('/login', async (req, res) => {
         message: "올바르지 않는 비밀번호입니다.",
       });
     }
-    console.log(token);
     // 비밀번호 맞음
       return res.json({
         loginSuccess: true,
-        accessToken: await token(loginCompany.company_id, loginCompany.company_name),
+        accessToken: await createToken(loginCompany.id, loginCompany.company_id, loginCompany.company_name),
         message: "로그인 됨용~",
         });
   }
@@ -119,17 +146,18 @@ router.post('/login', async (req, res) => {
   }
 })
 
-function token(companyId, companyName) {
+function createToken(Id, companyId, companyName) {
   return new Promise((resolve, reject) => {
     jwt.sign({
-      id: companyId,
+      id: Id,
+      company_id: companyId,
       name: companyName,
     },
       '9Na0SSeCrET2KeY', // 원하는 시크릿 키 - 배포시에 다른 파일에서 불러오기
       {
-        algorithm : "HS256", // 해싱 알고리즘
-        expiresIn : "86400",  // 토큰 유효 기간 Math.floor(Date.now() / 1000) - 30 }
-        issuer : "na0" // 발행자
+        algorithm : "HS256",
+        expiresIn : "86400",  // 토큰 유효 기간 
+        issuer : "na0"
       }, function (err, resultToken) {
       if (err) reject(err);
       else resolve(resultToken)
