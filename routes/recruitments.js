@@ -15,16 +15,16 @@ router.post('/check/:id', async (req, res, next) => {
 router.post('/input', async (req, res, next) => {
   const recruitmentInput = await Recruitment.create({
     'company_id': "1",
-    'title': req.body.recruitmentData.title,
-    'category': req.body.recruitmentData.category,
-    'type': req.body.recruitmentData.type,
-    'start_date': req.body.recruitmentData.start,
-    'end_date': req.body.recruitmentData.end,
-    'division_infomation': req.body.recruitmentData.areaRecruitment,
-    'work_infomation': req.body.recruitmentData.businessContent,
-    'qualification_infomation': req.body.recruitmentData.qualifications,
-    'submit_infomation': req.body.recruitmentData.document,
-    'help_infomation': req.body.recruitmentData.help,
+    'title': req.body.recruitmentData.title, // 제목
+    'career': req.body.recruitmentData.category, // 신입/경력
+    'kind': req.body.recruitmentData.type, // 모집분야
+    'date': req.body.recruitmentData.start, // 시작일
+    'end_date': req.body.recruitmentData.end, // 종료일
+    'division_information': req.body.recruitmentData.areaRecruitment, // 공채/수시
+    'work_information': req.body.recruitmentData.businessContent,
+    'qualification_information': req.body.recruitmentData.qualifications,
+    'submit_information': req.body.recruitmentData.document,
+    'help_information': req.body.recruitmentData.help,
   })
   console.log(recruitmentInput);
   res.json({
@@ -46,12 +46,12 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/list', async (req, res) => {
+router.get('/title/:id', async (req, res, next) => {
   try {
-    const recruitment = await Recruitment.findOne({
-      where: { id: req.id },
-    });
-    res.json(recruitment)
+    const recruitmentId = await Recruitment.findOne(
+      { where: { id: req.params.id } });
+    console.log(recruitmentId);
+    res.json(recruitmentId);
   } catch (err) {
     console.error(err);
     next(err);
@@ -68,51 +68,4 @@ router.get('/list', async (req, res) => {
 //     }
 // }
 
-// router.get('/list', async (req, res) => {
-//   try {
-//       const recruitmentListOne = await Recruitment.findOne({
-//     where: {
-//       'company_id': 1,
-//     }
-//   });
-//   res.json(recruitmentListOne);
-//   } catch (err) {
-//         console.error(err);
-//         next(err);
-//   }
-// }
-// );
-
-// router.get('/list', (req, res) => {
-//   const recruitmentListOne = Recruitment.findAll({ where: {'company_id': 1}})
-//     .then(result => {
-//       console.log("----------" + recruitmentListOne);
-//       console.log("----------" + result);
-//       res.send(result)
-//     })
-//   .catch(err => {console.log(err.data);})
-  // try {
-  //   const recruitmentList = await Recruitment.findAll({
-  //     where: { 'company_id': req.body.id }
-  //   });
-  //   console.log(recruitmentList);
-  //   res.send(recruitmentList)
-  // } catch (err) {
-  //   console.error(err);
-  //   next(err);
-  // }
-// });
-
 module.exports = router;
-
-
-      // .then(res => {
-      //   alert(JSON.stringify(res))
-      //     console.log(res);
-      //     console.log(res.data);
-      //     console.log(res.data.type);
-      //   if(res.data){
-      //   }
-      //   else{
-      //   }
-      // });
