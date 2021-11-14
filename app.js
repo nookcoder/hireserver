@@ -1,15 +1,15 @@
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
 const history = require('connect-history-api-fallback');
-var logger = require('morgan');
-var cors = require('cors'); //교차통신 모듈 호출
+const logger = require('morgan');
+const cors = require('cors'); //교차통신 모듈 호출
 
 //var indexRouter = require('./routes'); ///index
-var companysRouter = require('./routes/companys');
-var noticesRouter = require('./routes/notices');
-var apiRouter = require('./routes/api');
-var recruitmentRouter = require('./routes/recruitments');
+const companysRouter = require('./routes/companys');
+const noticesRouter = require('./routes/notices');
+const apiRouter = require('./routes/api');
+const recruitmentRouter = require('./routes/recruitments');
 const resumeRouter = require('./routes/resume');
 
 const { sequelize } = require('./models');
@@ -31,6 +31,7 @@ sequelize.sync({ force: false })
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
+app.set('port',5000);
 
 app.use(logger('dev'));
 app.use(express.json());
@@ -54,5 +55,9 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
+app.listen(5000,()=>{
+  console.log('5000번 포트 실행 중');
+})
 
 module.exports = app;
