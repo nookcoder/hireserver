@@ -4,10 +4,8 @@ const {Resume} = require('../models');
 const router = express.Router();
 
 router.post('/', async (req,res,next)=>{
-    console.log(req.body);
     try{
         const resume = await Resume.create({
-            'index':'',
             'name': req.body.applyData.name,
             'birth': req.body.applyData.birth,
             'gender':req.body.applyData.gender,
