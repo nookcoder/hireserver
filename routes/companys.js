@@ -137,7 +137,7 @@ router.post('/login', async (req, res) => {
       return res.json({
         loginSuccess: true,
         accessToken: await createToken(loginCompany.id, loginCompany.company_id, loginCompany.company_name),
-        message: "로그인 됨용~",
+        message: "로그인 되셨습니다. 반갑습니다." + loginCompany.company_name + "님",
         });
   }
   } catch (err) {
