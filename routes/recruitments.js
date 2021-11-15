@@ -14,7 +14,7 @@ router.post('/check/:id', async (req, res, next) => {
 
 router.post('/input', async (req, res, next) => {
   const recruitmentInput = await Recruitment.create({
-    'company_id': "1",
+    'company_id': req.body.recruitmentData.id,
     'title': req.body.recruitmentData.title, // 제목
     'career': req.body.recruitmentData.category, // 신입/경력
     'kind': req.body.recruitmentData.type, // 모집분야

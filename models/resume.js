@@ -51,6 +51,6 @@ module.exports = class Resume extends Sequelize.Model{
     }
 
     static associate(database){
-        database.Resume.belongsTo(database.Recruitment,{foreignKey:"resumes",targetKey:'id'});
+        database.Company.belongsTo(database.Company, { foreignKey: 'resumes', targetKey: "id" });        
     }
 }
