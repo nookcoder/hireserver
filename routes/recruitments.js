@@ -46,10 +46,10 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
-router.get('/title/:id', async (req, res, next) => {
+router.get('/title/:titleid', async (req, res, next) => {
   try {
     const recruitmentId = await Recruitment.findOne(
-      { where: { id: req.params.id } });
+      { where: { id: req.params.titleid } });
     console.log(recruitmentId);
     res.json(recruitmentId);
   } catch (err) {
