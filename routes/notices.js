@@ -19,7 +19,7 @@ router.post('/input', async (req, res, next) => {
     'title': req.body.noticeForm.title,
     'date': req.body.noticeForm.currentTime,
     'content': req.body.noticeForm.content,
-    'company_id': "1",
+    'company_id': req.body.noticeForm.id,
   })
   console.log(noticeInput);
   res.json({
