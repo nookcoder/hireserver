@@ -45,5 +45,6 @@ module.exports = class Company extends Sequelize.Model {
         // 1:다
         database.Company.hasMany(database.Notice, { constraints: false, foreignKey: 'company_id', sourceKey: "id" });
         database.Company.hasMany(database.Recruitment, { constraints: false, foreignKey: 'company_id', sourceKey: "id" });
+        database.Company.hasMany(database.Resume, { constraints: false, foreignKey: 'company_id', sourceKey: "id" });
     }
 };
