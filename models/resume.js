@@ -5,7 +5,7 @@ module.exports = class Resume extends Sequelize.Model{
         return super.init({
             index:{
                 type:Sequelize.INTEGER,
-                allowNull:false
+                allowNull:true,
             },
             name:{
                 type:Sequelize.STRING(45),
@@ -38,7 +38,16 @@ module.exports = class Resume extends Sequelize.Model{
             motivate:{
                 type:Sequelize.STRING(500),
                 allowNull:false,
+            },
+            recruitments_id:{
+                type:Sequelize.INTEGER,
+                allowNull:false,
+            },  
+            company_id:{
+                type:Sequelize.INTEGER,
+                allowNull:false
             }
+
         },{
             sequelize,
             timestamps: false,
@@ -51,6 +60,5 @@ module.exports = class Resume extends Sequelize.Model{
     }
 
     static associate(database){
-        database.Company.belongsTo(database.Company, { foreignKey: 'resumes', targetKey: "id" });        
     }
 }
