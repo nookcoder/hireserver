@@ -27,6 +27,5 @@ Resume.init(sequelize);
 Company.associate(database);
 Notice.associate(database)
 Recruitment.associate(database)
-Resume.associate(database);
 
 module.exports = database;

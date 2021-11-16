@@ -14,7 +14,8 @@ router.post('/', async (req,res,next)=>{
             'phone_number':req.body.applyData.phoneNumber,
             'phone_number2':req.body.applyData.phoneNumber2,
             'motivate':req.body.applyData.motivate,
-            'recruitments_title':req.body.applyData.title,
+            'recruitments_id':req.body.applyData.recrumentId,
+            'company_id':req.body.applyData.id,
         });
         res.send("등록성공");
     }catch(err){
