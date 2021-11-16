@@ -71,6 +71,8 @@ router.post('/signup', async (req, res) => {
       'company_pw': bcrypt.hashSync(req.body.user.password),
       'company_name': req.body.user.name,
       'company_email': req.body.user.email,
+      'company_introduce_title': "어서오세요.",
+      'company_introduce': "채용 공고 홈페이지에 오신것을 환영합니다.",
     })
     console.log(signupCompany);
     res.json(signupCompany);
@@ -80,6 +82,17 @@ router.post('/signup', async (req, res) => {
   }
 }
 );
+
+// 회사 소개 업데이트 하기 다중 안되나 진짜..
+router.patch('/introduce/:id', (req, res) => {
+    console.log(req.body.user)
+    Company.update({
+      'company_introduce': req.body.user.introduce,
+    }, { where: { id: req.params.id } })
+    Company.update({
+      'company_introduce_title': req.body.user.introduceTitle
+    }, { where: { id: req.params.id } } )
+});
 
 router.get('/login', (req, res) => {
   // 인증 확인
