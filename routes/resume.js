@@ -3,6 +3,23 @@ const {Resume} = require('../models');
 
 const router = express.Router();
 
+router.get('/:company/:recruitment',async(req,res,next)=>{
+    console.log(req.params);
+    try{
+        const applicants = await Resume.findAll({
+            where:{
+                'company_id':req.params.company,
+                'recruitments_id':req.params.recruitment
+            }
+        });
+        console.log(applicants);
+        res.send(applicants);
+    } catch(err){
+        console.log(err);
+    }
+})
+
+
 router.post('/', async (req,res,next)=>{
     try{
         const resume = await Resume.create({
@@ -21,6 +38,6 @@ router.post('/', async (req,res,next)=>{
     }catch(err){
         console.log(err);
     }
-})
+});
 
 module.exports = router;

@@ -3,9 +3,11 @@ const Sequelize = require('sequelize');
 module.exports = class Resume extends Sequelize.Model{
     static init(sequelize){
         return super.init({
-            index:{
+            id:{
                 type:Sequelize.INTEGER,
-                allowNull:true,
+                allowNull:false,
+                primaryKey:true,
+                autoIncrement:true,
             },
             name:{
                 type:Sequelize.STRING(45),

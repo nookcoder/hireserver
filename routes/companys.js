@@ -7,17 +7,19 @@ const Recruitment = require('../models/recruitment');
 
 var router = express.Router();
 
-// // company id로 값 불러오기
-// router.get('/:id', async (req, res, next) => {
-//   try {
-//     const company = await Company.findOne({where: { id: req.params.id }});
-//     console.log(company);
-//     res.json(company);
-//   } catch (err) {
-//     console.error(err);
-//     next(err);
-//   }
-// });
+router.get('/:company_id/name',async(req,res)=>{
+  console.log(req.params);
+  try{ 
+    const companyName = await Company.findOne({
+      where:{
+        id: req.params.company_id
+      }
+    });
+    res.send(companyName);
+  } catch(err){
+    console.log(err);
+  }
+})
 
 // 해당 company id에 따른 notices들
 router.get('/:company_id/notices', async (req, res, next) => {
