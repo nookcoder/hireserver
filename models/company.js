@@ -25,7 +25,15 @@ module.exports = class Company extends Sequelize.Model {
             company_domain: {
                 type: Sequelize.STRING(50),
                 allowNull: true,
-            }
+            },
+            company_introduce: {
+                type: Sequelize.TEXT,
+                allowNull: false,
+            },
+            company_introduce_title: {
+                type: Sequelize.STRING(50),
+                allowNull: false,
+            },
       },
           {
             sequelize,
