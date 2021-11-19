@@ -46,6 +46,22 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.get('/titleall/:id', async (req, res, next) => {
+  try {
+    const recruitmenTitle = await Recruitment.findAll(
+      {
+        where: { company_id: req.params.id },
+        attributes: ['title']
+      }
+    );
+    console.log(recruitmenTitle);
+    res.json(recruitmenTitle);
+  } catch (err) {
+    console.error(err);
+    next(err);
+  }
+});
+
 router.get('/title/:titleid', async (req, res, next) => {
   try {
     const recruitmentId = await Recruitment.findOne(
