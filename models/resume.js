@@ -37,6 +37,22 @@ module.exports = class Resume extends Sequelize.Model{
                 type:Sequelize.STRING(45),
                 allowNull:false,
             },
+            interview_group:{
+                type:Sequelize.STRING(45),
+                allowNull:true,
+            },
+            interview_location:{
+                type:Sequelize.STRING(45),
+                allowNull:true,
+            },
+            interview_date:{
+                type:Sequelize.DATEONLY,
+                allowNull:true,
+            },
+            interview_time:{
+                type:Sequelize.TIME,
+                allowNull:true,
+            },
             motivate:{
                 type:Sequelize.STRING(500),
                 allowNull:false,

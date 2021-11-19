@@ -34,6 +34,19 @@ router.get('/:recruitment_id',async(req,res,next)=>{
     }
 })
 
+// 면접자 면접 업데이트
+router.patch('/interview/update/:id', (req, res) => {
+    for (var item of req.body.user){
+        Resume.update({
+            'interview_group': item.interview_group,
+            'interview_location': item.interview_location,
+            'interview_date': item.interview_date,
+            'interview_time': item.interview_time,
+        },
+        { where: { id: item.id } });
+    }
+    res.send("success")
+});
 
 router.post('/', async (req,res,next)=>{
     try{

@@ -99,7 +99,6 @@ router.patch('/introduce/:id', (req, res) => {
 router.get('/login', (req, res) => {
   // 인증 확인
   const token = req.headers['access-token'];
-
   if (!token) {
     res.json({
       'status': 400,
