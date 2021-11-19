@@ -24,7 +24,8 @@ router.get('/:recruitment_id',async(req,res,next)=>{
     try{
         const applicants = await Resume.findAll({
             where:{
-                'recruitments_id':req.params.recruitment_id
+                'recruitments_id':req.params.recruitment_id,
+                'pass' : 1
             }
         });
         console.log(applicants);
@@ -32,7 +33,9 @@ router.get('/:recruitment_id',async(req,res,next)=>{
     } catch(err){
         console.log(err);
     }
-})
+});
+
+
 
 // 면접자 면접 업데이트
 router.patch('/interview/update/:id', (req, res) => {
