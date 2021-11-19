@@ -62,6 +62,18 @@ router.get('/titleall/:id', async (req, res, next) => {
   }
 });
 
+router.delete('/:id',async(req,res,next)=>{
+  try{
+    await Recruitment.destroy({
+      where:{
+        id: req.params.id,
+      }
+    })
+  }catch(err){
+    console.log(err);
+  }
+})
+
 router.get('/title/:titleid', async (req, res, next) => {
   try {
     const recruitmentId = await Recruitment.findOne(

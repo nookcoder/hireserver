@@ -14,6 +14,15 @@ router.get('/:id', async (req, res, next) => {
   }
 });
 
+router.delete('/:id', async (req,res,next)=>{
+  try{
+    await Notice.destroy({where : { id : req.params.id}});
+    res.send("성공");
+  }catch(err){
+    console.log(err);
+  }
+});
+
 router.post('/input', async (req, res, next) => {
   const noticeInput = await  Notice.create({
     'title': req.body.noticeForm.title,
