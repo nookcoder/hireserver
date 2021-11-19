@@ -55,4 +55,18 @@ router.post('/', async (req,res,next)=>{
     }
 });
 
+router.delete('/:companyId/:recruitmentId',async(req,res,netx)=>{
+    try{
+        await Resume.destroy({
+            where:{
+                "company_id" : req.params.companyId,
+                "recruitments_id" : req.params.recruitmentId 
+            }
+        });
+        res.send("제거 성공");
+    }catch(err){
+        console.log(err);
+    }
+})
+
 module.exports = router;

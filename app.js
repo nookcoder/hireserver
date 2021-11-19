@@ -56,4 +56,7 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
+app.listen(5000,()=>{
+  console.log('App is Listening Server by 5000')
+})
 module.exports = app;

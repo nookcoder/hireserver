@@ -88,12 +88,11 @@ router.post('/signup', async (req, res) => {
 // 회사 소개 업데이트 하기 다중 안되나 진짜..
 router.patch('/introduce/:id', (req, res) => {
     console.log(req.body.user)
-    Company.update({
+    Company.update(
+      {
       'company_introduce': req.body.user.introduce,
-    }, { where: { id: req.params.id } })
-    Company.update({
       'company_introduce_title': req.body.user.introduceTitle
-    }, { where: { id: req.params.id } } )
+    }, {where: { id: req.params.id } })
 });
 
 router.get('/login', (req, res) => {
