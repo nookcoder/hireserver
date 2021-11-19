@@ -61,6 +61,7 @@ router.post('/', async (req,res,next)=>{
             'motivate':req.body.applyData.motivate,
             'recruitments_id':req.body.applyData.recrumentId,
             'company_id':req.body.applyData.id,
+            'pass': 0
         });
         res.send("등록성공");
     }catch(err){
@@ -80,6 +81,39 @@ router.delete('/:companyId/:recruitmentId',async(req,res,netx)=>{
     }catch(err){
         console.log(err);
     }
-})
+});
+
+router.patch('/:id',async(req,res)=>{
+    const NOT_YET = 0;
+    const PASS = 1;
+    const NONE_PASS = 2; 
+    try{
+        switch (req.body.result) {
+            case NOT_YET:
+                await Resume.update(
+                    {'pass' : NOT_YET },
+                    {where:{"id" : req.params.id}
+                });
+                break;
+            case PASS:
+                await Resume.update(
+                    {'pass' : PASS },
+                    {where:{"id" : req.params.id}
+                });
+                break;
+            case NONE_PASS:
+                await Resume.update(
+                    {'pass' : NONE_PASS },
+                    {where:{"id" : req.params.id}
+                });   
+                break;         
+            default:
+                break;
+        }
+        res.send("성공");
+    }catch(err){
+        console.log(err);
+    }
+});
 
 module.exports = router;

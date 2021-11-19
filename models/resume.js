@@ -64,6 +64,10 @@ module.exports = class Resume extends Sequelize.Model{
             company_id:{
                 type:Sequelize.INTEGER,
                 allowNull:false
+            },
+            pass:{
+                type:Sequelize.INTEGER,
+                allowNull:false,
             }
 
         },{
