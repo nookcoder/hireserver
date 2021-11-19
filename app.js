@@ -56,8 +56,4 @@ app.use(function(err, req, res, next) {
   res.render('error');
 });
 
-app.listen(5000,()=>{
-  console.log('5000번 포트 실행 중');
-})
-
 module.exports = app;
