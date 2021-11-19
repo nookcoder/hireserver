@@ -19,6 +19,21 @@ router.get('/:company/:recruitment',async(req,res,next)=>{
     }
 })
 
+router.get('/:recruitment_id',async(req,res,next)=>{
+    console.log(req.params);
+    try{
+        const applicants = await Resume.findAll({
+            where:{
+                'recruitments_id':req.params.recruitment_id
+            }
+        });
+        console.log(applicants);
+        res.send(applicants);
+    } catch(err){
+        console.log(err);
+    }
+})
+
 
 router.post('/', async (req,res,next)=>{
     try{
