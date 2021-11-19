@@ -69,6 +69,7 @@ router.delete('/:id',async(req,res,next)=>{
         id: req.params.id,
       }
     })
+    res.send("success")
   }catch(err){
     console.log(err);
   }
