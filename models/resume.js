@@ -53,9 +53,13 @@ module.exports = class Resume extends Sequelize.Model{
                 type:Sequelize.TIME,
                 allowNull:true,
             },
+            send_email_success: {
+                type:Sequelize.INTEGER,
+                allowNull:false,
+            },
             motivate:{
                 type:Sequelize.STRING(500),
-                allowNull:false,
+                allowNull: false,
             },
             recruitments_id:{
                 type:Sequelize.INTEGER,

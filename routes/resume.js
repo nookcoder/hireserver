@@ -42,6 +42,8 @@ router.patch('/interview/update/:id', (req, res) => {
             'interview_location': item.interview_location,
             'interview_date': item.interview_date,
             'interview_time': item.interview_time,
+            'interview_inter': item.interview_inter,
+            'send_email_success': item.send_email_success,
         },
         { where: { id: item.id } });
     }
