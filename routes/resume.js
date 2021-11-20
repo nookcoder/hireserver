@@ -64,6 +64,8 @@ router.post('/', async (req,res,next)=>{
             'motivate':req.body.applyData.motivate,
             'recruitments_id':req.body.applyData.recrumentId,
             'company_id':req.body.applyData.id,
+            'selfInfo':req.body.applyData.selfInfo,
+            'experience':req.body.applyData.experience,
             'pass': 0
         });
         res.send("등록성공");

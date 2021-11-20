@@ -68,7 +68,16 @@ module.exports = class Resume extends Sequelize.Model{
             pass:{
                 type:Sequelize.INTEGER,
                 allowNull:false,
+            },
+            selfInfo:{
+                type:Sequelize.STRING(500),
+                allowNull:true,
+            },
+            experience:{
+                type:Sequelize.STRING(500),
+                allowNull:true,
             }
+
 
         },{
             sequelize,
